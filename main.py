@@ -1,6 +1,7 @@
 import os
-import pyperclip
 from pathlib import PureWindowsPath, PurePosixPath, Path
+
+import pyperclip
 
 
 def get_clipboard() -> str:
@@ -29,12 +30,11 @@ def posix_to_windows(path: str):
     return os.path.join(*pathlib.parts)
 
 
-if __name__ == "__main__":
-    user_path = get_clipboard()
-    if not user_path:
-        exit()
+user_path = get_clipboard()
+if not user_path:
+    exit()
 
-    if is_windows(user_path):
-        set_clipboard(windows_to_posix(user_path))
-    else:
-        set_clipboard(posix_to_windows(user_path))
+if is_windows(user_path):
+    set_clipboard(windows_to_posix(user_path))
+else:
+    set_clipboard(posix_to_windows(user_path))
